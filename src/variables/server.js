@@ -6,4 +6,4 @@ export const localhostUsers = 'http://localhost:7000/users'
 export const localhostAuth = 'http://localhost:7000/auth'
 export const localhostSubcategory = 'http://localhost:7000/subcategory'
 export const localhostShop = 'http://localhost:7000/shop'
-
+export const localhostCheckout = 'http://localhost:7000/checkout'

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
+import LoadingSpinner from '../components/customElements/MyLoadingSpinner';
 import Navbar from '../components/customElements/MyNavbar';
 import Slider from '../components/customElements/MySlider';
 import ProductItem from '../components/product/ProductItem';
@@ -12,6 +13,7 @@ const Home = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
 
     useEffect(() => {
+        console.log('asd')
         const getAllProducts = async () => {
             const allProductsResponse = await axios.get(`${localhostProduct}`)
             setProducts(allProductsResponse.data)
@@ -25,9 +27,17 @@ const Home = () => {
 
             <h2 className='mb-3'>Все товары</h2>
 
-            <ProductList
-            products={products}
-            />
+            <div>
+                {
+                    products.length
+                    ?
+                        <ProductList
+                        products={products}
+                        />
+                    :
+                        <LoadingSpinner/>
+                }
+            </div>
         </div>
     )
 }

@@ -1,3 +1,6 @@
+import { IShop } from "./ShopInterface";
+import { ISubcategory } from "./SubcategryInterface";
+
 export interface IProduct{
     id: number,
     name: string,
@@ -20,5 +23,6 @@ export interface IProduct{
     matrix: string,
     diagonal: string,
     image: string,
-    subCategoryId: number
+    subCategory: ISubcategory,
+    shop: IShop
 }

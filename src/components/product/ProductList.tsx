@@ -7,10 +7,12 @@ const ProductList = (props: {products: IProduct[]}) => {
     return (
         <div className="row align-items-start d-flex">
             {props.products.map((product) => {
-                return <ProductItem
-                key={product.id}
-                product={product}
-                />
+                return <div className="col-md-2 mb-5">
+                    <ProductItem
+                    key={product.id}
+                    product={product}
+                    />
+                </div>
             })}
         </div>
     );

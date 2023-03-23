@@ -36,12 +36,12 @@ const Register = () => {
       return;
     } 
     try{
-    // const response = axios.post(
-    //   `${localhostAuth}/registration`, 
-    //   userData
-    // );
+    const response = axios.post(
+      `${localhostAuth}/registration`, 
+      userData
+    );
     
-    // navigate('/login');
+    navigate('/login');
     setSuccessMessage('Вы успешно прошли регистрацию');
   } catch(e) {
     if(e instanceof AxiosError){
@@ -51,8 +51,6 @@ const Register = () => {
   }
     
   };
-
-  
 
     return (
       <main className="form-signin m-auto"  style={{height: 600}}>

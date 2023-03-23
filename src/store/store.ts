@@ -3,13 +3,19 @@ import userDataReducer from './reducers/users/UserDataSlice'
 import userReducer from './reducers/users/UserSlice'
 import errorsReducer from './reducers/errors/ErrorsSlice'
 import componentsReducer from './reducers/components/ComponentsSlice'
+import productsReducer from './reducers/products/ProductsSlice'
+import basketReducer from './reducers/baskets/BasketSlice'
+import checkoutReducer from './reducers/checkout/CheckoutsSlice'
 
 
 const rootReducer = combineReducers({
     userDataReducer,
     userReducer,
     errorsReducer,
-    componentsReducer
+    componentsReducer,
+    productsReducer,
+    basketReducer,
+    checkoutReducer
 })
 
 export const setupStore = () => {

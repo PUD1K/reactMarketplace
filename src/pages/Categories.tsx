@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import CategoriesList from '../components/categories/CategorysList';
+import LoadingSpinner from '../components/customElements/MyLoadingSpinner';
 import { ICategory } from '../models/CategoryInterface';
 import { localhostCategory } from '../variables/server';
 
@@ -18,9 +19,15 @@ const Categories = () => {
         <div>
             <div className='mt-4'>
                 <h1>Категории</h1>
-                <CategoriesList
-                categories={categories}
-                />
+                {
+                    categories.length
+                    ?
+                        <CategoriesList
+                        categories={categories}
+                        />
+                    :
+                        <LoadingSpinner/>
+                }
             </div>
         </div>
     );

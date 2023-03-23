@@ -18,6 +18,7 @@ const MyNavbar = (): JSX.Element => {
 
   const email = JSON.parse((localStorage.getItem('userData') || '{}')).email;
   const username = JSON.parse((localStorage.getItem('userData') || '{}')).username;
+  const navigateTo = `/basket/${username}`
 
   const setShowCanvas = () => {
     dispatch(componentsSlice.actions.setShowCanvas());
@@ -30,7 +31,7 @@ const MyNavbar = (): JSX.Element => {
           <MyDropdown
               email={email}
               username={username}/>
-          <Link className='nav-link active active' to='/basket'>
+          <Link className='ms-3 me-3 nav-link active active' to={navigateTo}>
               <img 
                 src={basketImg}
                 alt=''

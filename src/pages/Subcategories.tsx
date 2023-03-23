@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import LoadingSpinner from '../components/customElements/MyLoadingSpinner';
 import SubCategoriesList from '../components/subCategories/SubCategoryList';
-import { ICategory } from '../models/CategoryInterface';
-import { localhostCategory, localhostSubcategory } from '../variables/server';
+import { ISubcategory } from '../models/SubcategryInterface';
+import { localhostSubcategory } from '../variables/server';
 
 const Categories = () => {
-    const [subCategories, setSubCategories] = useState<ICategory[]>([])
+    const [subCategories, setSubCategories] = useState<ISubcategory[]>([])
     let { categoryslug } = useParams();
 
     useEffect(() => {
@@ -21,13 +22,14 @@ const Categories = () => {
         <div>
             <div className='mt-4'>
                 <h1>Категории</h1>
-                {subCategories.length
+                {
+                    subCategories.length
                     ?  
-                    <SubCategoriesList
-                    subCategories={subCategories}
-                    />
+                        <SubCategoriesList
+                        subCategories={subCategories}
+                        />
                     : 
-                    <h1>Подкатегории не найдены</h1>
+                        <LoadingSpinner/>
                 }
             </div>
         </div>

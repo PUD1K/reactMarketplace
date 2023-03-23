@@ -4,7 +4,7 @@ import SubCategoryItem from './SubCategoryItem';
 
 const CategoriesList = (props: {subCategories: ISubcategory[]}) => {
     return (
-        <div className="row align-items-start d-flex" style={{width: '350px'}}>
+        <div className="row align-items-start d-flex">
             {props.subCategories.map(subCategory => {
                 return <SubCategoryItem
                 key={subCategory.slug}

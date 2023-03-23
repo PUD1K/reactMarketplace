@@ -1,19 +1,8 @@
 import { IUser } from "../../../models/UserInterface"
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-
-interface UsersState {
-    currentUser: UserState;
-    users: [];
-    isLoading: boolean;
-    error: string;
-}
-
-
 interface UserState {
     user: IUser;
-    isLoading: boolean;
-    error: string;
 }
 
 const initialState: UserState = {
@@ -21,36 +10,25 @@ const initialState: UserState = {
         id: -1,
         email: '',
         username: '',
+        number: '',
+        address: '',
         createdAt: '',
         updatedAt: '',
         roles: [],
-        basket: {
-            id: -1,
-            userId: -1,
-            createdAt: '',
-            updatedAt: '',
-        }
+        basket: []
     },
-    isLoading: false,
-    error: ''
 }
 
 export const userDataSlice = createSlice({
     name: 'userData',
     initialState,
     reducers: {
-        setCurrentUser(state){
-            state.isLoading = true;
-        },
-        setCurrentUserSuccess(state, action: PayloadAction<IUser>){
+        setUser(state, action: PayloadAction<IUser>){
             state.user = action.payload;
-            state.error = ''
-            state.isLoading = false;
         },
-        setCurrentUserError(state, action: PayloadAction<string>){
-            state.error = action.payload;
-            state.isLoading = false;
-        },
+        setAddress(state, action: PayloadAction<string>){
+            state.user.address = action.payload;
+        }
     }
 })
 

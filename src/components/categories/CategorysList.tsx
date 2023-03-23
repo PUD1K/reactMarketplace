@@ -5,7 +5,7 @@ import CategoryItem from './CategoryItem';
 
 const CategoriesList = (props: {categories: ICategory[]}) => {
     return (
-        <div className="row align-items-start d-flex" style={{width: '400px'}}>
+        <div className="row align-items-start d-flex">
             {props.categories.map(category => {
                 return <CategoryItem
                 key={category.slug}
