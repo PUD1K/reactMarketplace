@@ -1,14 +1,14 @@
 import { Button, ButtonGroup } from 'react-bootstrap';
 import {useState} from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { productsSlice } from '../../store/reducers/products/ProductsSlice';
+import { productSlice } from '../../store/reducers/products/ProductSlice';
 
 const SizeSelector = () => {
-  const { selectedSize } = useAppSelector(state => state.productsReducer)
+  const { selectedSize } = useAppSelector(state => state.productReducer)
   const dispatch = useAppDispatch();
 
   const handleSizeSelect = (size: string) => {
-    dispatch(productsSlice.actions.setSize(size))
+    dispatch(productSlice.actions.setSize(size))
   };
 
   return (

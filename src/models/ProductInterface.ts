@@ -1,3 +1,4 @@
+import { IComment } from "./CommentInterface";
 import { IShop } from "./ShopInterface";
 import { ISubcategory } from "./SubcategryInterface";
 
@@ -24,5 +25,9 @@ export interface IProduct{
     diagonal: string,
     image: string,
     subCategory: ISubcategory,
-    shop: IShop
+    shop: IShop,
+    comments: IComment[],
+
+    totalRating: number,
+    commentsCount: number
 }

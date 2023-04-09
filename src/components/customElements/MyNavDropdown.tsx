@@ -1,14 +1,21 @@
 import React, {useState, useCallback} from 'react';
+import { IRole } from '../../models/RoleInterface';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
 import { userSlice } from '../../store/reducers/users/UserSlice';
 
-interface EmailProps{
+interface UserDataProps{
     email: string,
-    username: string
+    username: string,
+    roles: []
 }
 
-const MyNavDropdown = ({email, username}: EmailProps): JSX.Element => {
+enum UserRoles{
+  ADMIN = 'ADMIN',
+  SHOP_EMPLOYEE = 'SHOP_EMPLOYEE'
+}
+
+const MyNavDropdown = ({email, username, roles}: UserDataProps): JSX.Element => {
     const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -18,13 +25,31 @@ const MyNavDropdown = ({email, username}: EmailProps): JSX.Element => {
 
     const navigateTo = useCallback(() => {
       const to = `/my/${username}`;
-      navigate(to, {replace: true});
-    }, [email, username])
+      navigate(to);
+    }, [username, navigate])
+
+    const navigateToStoresSettings = useCallback(() => {
+      const to = `/shops_administration`;
+      navigate(to);
+    }, [navigate])
 
     const logout = () => {
       localStorage.setItem('userData', '');
       localStorage.setItem('token', '');
       dispatch(userSlice.actions.setLoggedIn());
+    }
+
+    const switchFunctional = (roles: IRole[]) => {
+      if(roleExistInRoles(UserRoles.ADMIN, roles)){
+        return <li onClick={() => navigateToStoresSettings()}><Link className='dropdown-item' to=''>Магазины</Link></li>
+      }
+      else if(roleExistInRoles(UserRoles.SHOP_EMPLOYEE, roles)){
+        return <li onClick={() => navigateToStoresSettings()}><Link className='dropdown-item' to=''>Магазины</Link></li>
+      }
+    }
+
+    const roleExistInRoles = (role: string, roles: IRole[]) => {
+      return !!roles.filter(i => i.value === role).length
     }
 
     return (
@@ -36,6 +61,7 @@ const MyNavDropdown = ({email, username}: EmailProps): JSX.Element => {
               </a>
               <ul className={dropdownClass} aria-labelledby="navbarDropdown">
                 <li onClick={() => navigateTo()}><Link className='dropdown-item' to=''>Личный кабинет</Link></li>
+                {switchFunctional(roles)}
                 <li><hr /></li>
                 <li><Link className='dropdown-item' to='' onClick={() => logout()}>Выйти</Link></li>
               </ul>

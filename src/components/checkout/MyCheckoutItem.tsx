@@ -5,19 +5,33 @@ import MyCheckoutProduct from './MyCheckoutProduct';
 
 const MyCheckoutItem = (props: {checkout: ICheckout}) => {
     return (
-        <div>
-            <p>Сумма: {props.checkout.totalSum}</p>
-            <p>Адрес: {props.checkout.address}</p>
-            <p>Дата заказа: {props.checkout.createdAt}</p>
+      <div>
+        <ListGroup.Item>
+          <ListGroup variant="flush">
+            {props.checkout.CheckoutBasketProducts.map((checkoutBasketProduct) => (
+              <MyCheckoutProduct
+              key={checkoutBasketProduct.id}
+              basketProduct={checkoutBasketProduct.basketProduct}/>
+            ))}
+          </ListGroup>
 
-            <ListGroup variant="flush">
-              {props.checkout.CheckoutBasketProducts.map((checkoutBasketProduct) => (
-                <MyCheckoutProduct
-                key={checkoutBasketProduct.id}
-                basketProduct={checkoutBasketProduct.basketProduct}/>
-              ))}
-            </ListGroup>
-        </div>
+          <hr/>
+          <Row>
+            <Col>
+              <p className="font-weight-bold"><strong>Сумма</strong></p>
+              <p>{props.checkout.totalSum} ₽</p>
+            </Col>
+            <Col>
+              <p className="font-weight-bold"><strong>Адрес</strong></p>
+              <p>{props.checkout.address}</p>
+            </Col>
+            <Col>
+              <p className="font-weight-bold"><strong>Дата заказа:</strong></p>
+              <p>{props.checkout.createdAt}</p>
+            </Col>
+          </Row>
+        </ListGroup.Item>
+      </div>
     );
 };
 

@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect, FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { userSlice } from '../../store/reducers/users/UserSlice';
 import MyDropdown from './MyNavDropdown';
@@ -9,6 +9,9 @@ import { componentsSlice } from '../../store/reducers/components/ComponentsSlice
 
 const MyNavbar = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchParam, setSearchParam] = useState('');
+
+  const navigate = useNavigate();
 
   const {isLoggedIn} = useAppSelector(state => state.userReducer)
   const {showCanvas} = useAppSelector(state => state.componentsReducer)
@@ -17,12 +20,23 @@ const MyNavbar = (): JSX.Element => {
   const dropdown = `dropdown-menu${isOpen? " show" : ""}`
 
   const email = JSON.parse((localStorage.getItem('userData') || '{}')).email;
+  const roles = JSON.parse((localStorage.getItem('userData') || '{}')).roles;
   const username = JSON.parse((localStorage.getItem('userData') || '{}')).username;
   const navigateTo = `/basket/${username}`
 
   const setShowCanvas = () => {
     dispatch(componentsSlice.actions.setShowCanvas());
   }
+  
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    
+    const searchParams = new URLSearchParams();
+    searchParams.append('query', searchParam);
+    navigate(`/search?${searchParams.toString()}`);
+
+    setSearchParam('')
+  };
 
   const personalAccount = (isLoggedIn: boolean, email: string) => {
     if(isLoggedIn)
@@ -30,7 +44,8 @@ const MyNavbar = (): JSX.Element => {
         <>
           <MyDropdown
               email={email}
-              username={username}/>
+              username={username}
+              roles={roles}/>
           <Link className='ms-3 me-3 nav-link active active' to={navigateTo}>
               <img 
                 src={basketImg}
@@ -67,8 +82,14 @@ const MyNavbar = (): JSX.Element => {
           <li className="nav-item me-2">
             <Link className="nav-link active" to="/categories">Категории</Link>
           </li>
-          <form className="d-flex mw-100">
-            <input className="form-control me-2 col-md-5" type="search" placeholder="Введите наименование товара" aria-label="Search"/>
+          <form className="d-flex mw-100" onSubmit={handleSubmit}>
+            <input className="form-control me-2 col-md-5" 
+            type="search" 
+            placeholder="Введите наименование товара" 
+            aria-label="Search"
+            value={searchParam}
+            onChange={(e) => setSearchParam(e.target.value)}
+            />
               <button className="btn btn-outline-light" type="submit">Поиск</button>
           </form>
         </ul>

@@ -20,6 +20,12 @@ import Product from './pages/Product';
 import MyAcc from './pages/MyAcc';
 import Checkout from './pages/Checkout';
 import SuccessCheckout from './pages/SuccessCheckout';
+import Comment from './pages/Comment';
+import SearchPage from './pages/Search';
+import Search from './pages/Search';
+import ShopsAdministration from './pages/ShopsAdministration';
+import ShopUpdateManager from './pages/ShopUpdateManager';
+import ShopCreate from './pages/ShopCreate';
 
 
 function App() {
@@ -42,10 +48,15 @@ function App() {
           <Route path='categories/:categoryslug' element={<Subcategories/>}/>
           <Route path='categories/:categoryslug/:subcategoryslug' element={<Products key={window.location.pathname}/>}/>
           <Route path='/:productarticle' element={<Product key={window.location.pathname}/>}/>
+          <Route path='/:productarticle/feedback' element={<Comment key={window.location.pathname}/>}/>
+          <Route path='/search' element={<Search key={window.location.pathname}/>}/>
           <Route path='registration' element={<Register/>}/>
           <Route path='login' element={<Login/>}/>
           <Route path='my/:username' element={<MyAcc/>}/>
           <Route path='basket/:username' element={<Basket/>}/>
+          <Route path='shops_administration' element={<ShopsAdministration/>}/>
+          <Route path='shops_administration/create' element={<ShopCreate shopWillBeCreate={true}/>}/>
+          <Route path='shops_administration/:shopslug' element={<ShopCreate shopWillBeCreate={false}/>}/>
           <Route path='checkout/:username' element={<Checkout/>}/>   
           <Route path='success_checkout/:username' element={<SuccessCheckout/>}/>                 
         </Route>

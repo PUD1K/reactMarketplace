@@ -6,7 +6,7 @@ import ColorSelector from '../ColorSelector';
 import SizeSelector from '../SizeSelector';
 
 const OutfitProduct = () => {
-    const { product } = useAppSelector(state => state.productsReducer)
+    const { product } = useAppSelector(state => state.productReducer)
     return (
         <div>
             <h2>{product.name}</h2>

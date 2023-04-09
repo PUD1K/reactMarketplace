@@ -1,14 +1,14 @@
 import { Button, ButtonGroup } from 'react-bootstrap';
 import {useState} from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { productsSlice } from '../../store/reducers/products/ProductsSlice';
+import { productSlice } from '../../store/reducers/products/ProductSlice';
 
 const ColorSelector = () => {
-  const { selectedColor} = useAppSelector(state => state.productsReducer)
+  const { selectedColor} = useAppSelector(state => state.productReducer)
   const dispatch = useAppDispatch();
 
   const handleColorSelect = (color: string) => {
-    dispatch(productsSlice.actions.setColor(color))
+    dispatch(productSlice.actions.setColor(color))
   };
 
   return (

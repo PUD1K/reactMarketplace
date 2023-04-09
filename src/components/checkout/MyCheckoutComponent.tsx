@@ -22,8 +22,8 @@ const MyCheckoutComponent = () => {
     return (
         <Container>
             <Row>
-                <Col md={8}>
-                    <h2>Оформление заказа</h2>
+                <Col md={12}>
+                    <h2>Мои заказы</h2>
                     {checkouts.length === 0 ? (
                     <p>Вы еще не сделали ни одного заказа.</p>
                     ) : (

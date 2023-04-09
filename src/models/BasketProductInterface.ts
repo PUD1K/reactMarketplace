@@ -1,4 +1,4 @@
-import { IColor } from "./ColorInterface,";
+import { IColor } from "./ColorInterface";
 import { IProduct } from "./ProductInterface";
 import { IShop } from "./ShopInterface";
 import { ISize } from "./SizeInterface";
