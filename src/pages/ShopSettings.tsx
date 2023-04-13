@@ -6,13 +6,14 @@ import { IShop } from '../models/ShopInterface';
 import MyImageUpdater from '../components/customElements/MyImageUpdater';
 import { useSelector } from 'react-redux';
 import { useAppSelector } from '../hooks/redux';
+import ShopManagersAdministration from '../components/shops/ShopManagersAdministration';
 
 interface ShopUpdateProps{
     shopWillBeCreate: boolean;
 }
 
-const ShopCreate = ({ shopWillBeCreate }: ShopUpdateProps) => {
-    const [shop, setShop] = useState(Object);
+const ShopSettings = ({ shopWillBeCreate }: ShopUpdateProps) => {
+    const [shop, setShop] = useState(Object || null);
     const [shopName, setShopName] = useState('')
     const [shopDescription, setShopDescription] = useState('')
     const [shopImageUrl, setShopImageUrl] = useState('')
@@ -59,10 +60,11 @@ const ShopCreate = ({ shopWillBeCreate }: ShopUpdateProps) => {
         if(!shopWillBeCreate){
             const getShop = async () =>{
                 const getShopResponse = await axios.get(`${localhostShop}/by_slug/${shopslug}`)
-                const shop: IShop = getShopResponse.data;
-                setShopName(shop.name);
-                setShopDescription(shop.description);
-                setShopImageUrl(shop.image);
+                const shopResponse: IShop = getShopResponse.data;
+                setShop(shopResponse);
+                setShopName(shopResponse.name);
+                setShopDescription(shopResponse.description);
+                setShopImageUrl(shopResponse.image);
             }
             getShop();
         }
@@ -96,6 +98,13 @@ const ShopCreate = ({ shopWillBeCreate }: ShopUpdateProps) => {
                     placeholder="Название магазина"
                     />
 
+                    {(!shopWillBeCreate && 
+                    (<div className='mt-3'>
+                        <ShopManagersAdministration
+                        shop={shop}/>
+                    </div>)
+                     )}
+
                     <button className="w-25 btn btn-lg btn-primary mt-4" type="submit">
                         Сохранить
                     </button>
@@ -105,4 +114,4 @@ const ShopCreate = ({ shopWillBeCreate }: ShopUpdateProps) => {
     );
 };
 
-export default ShopCreate;
+export default ShopSettings;

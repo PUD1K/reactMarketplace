@@ -25,7 +25,7 @@ import SearchPage from './pages/Search';
 import Search from './pages/Search';
 import ShopsAdministration from './pages/ShopsAdministration';
 import ShopUpdateManager from './pages/ShopUpdateManager';
-import ShopCreate from './pages/ShopCreate';
+import ShopSettings from './pages/ShopSettings';
 
 
 function App() {
@@ -55,8 +55,8 @@ function App() {
           <Route path='my/:username' element={<MyAcc/>}/>
           <Route path='basket/:username' element={<Basket/>}/>
           <Route path='shops_administration' element={<ShopsAdministration/>}/>
-          <Route path='shops_administration/create' element={<ShopCreate shopWillBeCreate={true}/>}/>
-          <Route path='shops_administration/:shopslug' element={<ShopCreate shopWillBeCreate={false}/>}/>
+          <Route path='shops_administration/create' element={<ShopSettings shopWillBeCreate={true}/>}/>
+          <Route path='shops_administration/:shopslug' element={<ShopSettings shopWillBeCreate={false}/>}/>
           <Route path='checkout/:username' element={<Checkout/>}/>   
           <Route path='success_checkout/:username' element={<SuccessCheckout/>}/>                 
         </Route>
