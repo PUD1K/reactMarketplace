@@ -40,6 +40,7 @@ const initialState: ProductState = {
             createdAt: '',
             updatedAt: '',
             category:{
+                id: 0,
                 name: '',
                 slug: '',
                 image: '',

@@ -18,10 +18,15 @@ const OutfitProduct = () => {
             <div className='mt-3 mb-3'>
                 <ColorSelector/>
             </div>
-            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Бренд: </strong>{product.manufacturer}</p>
-            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Страна производитель: </strong>{product.country}</p>
-            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Материал: </strong>{product.material}</p>
-            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Комплектация: </strong>{product.configuration}</p>
+            {(product.manufacturer && product.manufacturer !== '' &&
+            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Бренд: </strong>{product.manufacturer}</p>)}
+            
+            {(product.manufacturer && product.manufacturer !== '' &&
+            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Материал: </strong>{product.material}</p>)}
+            {(product.manufacturer && product.manufacturer !== '' &&
+            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Комплектация: </strong>{product.configuration}</p>)}
+            {(product.manufacturer && product.manufacturer !== '' &&
+            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Страна производитель: </strong>{product.country}</p>)}
 
             <p className='fs-5 mt-3'>{product.price} ₽</p>
             {/* <button className="text-start btn btn-primary" type="submit">В корзину</button> */}

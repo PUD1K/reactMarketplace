@@ -12,7 +12,7 @@ interface UserDataProps{
 
 enum UserRoles{
   ADMIN = 'ADMIN',
-  SHOP_EMPLOYEE = 'SHOP_EMPLOYEE'
+  MANAGER = 'MANAGER'
 }
 
 const MyNavDropdown = ({email, username, roles}: UserDataProps): JSX.Element => {
@@ -22,30 +22,31 @@ const MyNavDropdown = ({email, username, roles}: UserDataProps): JSX.Element => 
     const dispatch = useAppDispatch();
 
     const dropdownClass = `dropdown-menu${isOpen? " show" : ""}`
-
     const navigateTo = useCallback(() => {
       const to = `/my/${username}`;
       navigate(to);
     }, [username, navigate])
 
-    const navigateToStoresSettings = useCallback(() => {
+    const navigateToShopsAdministration = useCallback(() => {
       const to = `/shops_administration`;
       navigate(to);
     }, [navigate])
+
+    const navigateToShopSettings = useCallback(() => {
+      const to = `/shop_setting`;
+      navigate(to);
+    }, [navigate])
+
+    const navigateToManagment = useCallback(() => {
+      const to = `/shop_managment`;
+      navigate(to);
+    }, [navigate])
+
 
     const logout = () => {
       localStorage.setItem('userData', '');
       localStorage.setItem('token', '');
       dispatch(userSlice.actions.setLoggedIn());
-    }
-
-    const switchFunctional = (roles: IRole[]) => {
-      if(roleExistInRoles(UserRoles.ADMIN, roles)){
-        return <li onClick={() => navigateToStoresSettings()}><Link className='dropdown-item' to=''>Магазины</Link></li>
-      }
-      else if(roleExistInRoles(UserRoles.SHOP_EMPLOYEE, roles)){
-        return <li onClick={() => navigateToStoresSettings()}><Link className='dropdown-item' to=''>Магазины</Link></li>
-      }
     }
 
     const roleExistInRoles = (role: string, roles: IRole[]) => {
@@ -61,7 +62,15 @@ const MyNavDropdown = ({email, username, roles}: UserDataProps): JSX.Element => 
               </a>
               <ul className={dropdownClass} aria-labelledby="navbarDropdown">
                 <li onClick={() => navigateTo()}><Link className='dropdown-item' to=''>Личный кабинет</Link></li>
-                {switchFunctional(roles)}
+                {(roleExistInRoles(UserRoles.ADMIN, roles) && 
+                  <li onClick={() => navigateToShopsAdministration()}><Link className='dropdown-item' to=''>Администрирование</Link></li>
+                )}
+                {(roleExistInRoles(UserRoles.MANAGER, roles) && 
+                  <li onClick={() => navigateToShopSettings()}><Link className='dropdown-item' to=''>Настройки магазина</Link></li>
+                )}
+                {(roleExistInRoles(UserRoles.MANAGER, roles) && 
+                  <li onClick={() => navigateToManagment()}><Link className='dropdown-item' to=''>Менеджмент</Link></li>
+                )}
                 <li><hr /></li>
                 <li><Link className='dropdown-item' to='' onClick={() => logout()}>Выйти</Link></li>
               </ul>

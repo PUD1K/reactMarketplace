@@ -3,7 +3,7 @@ import { IProduct } from '../../models/ProductInterface';
 import ProductItem from './ProductItem';
 
 const ProductList = (props: {products: IProduct[]}) => {
-    // console.log(props)
+    console.log(props.products)
     return (
         <div className="row align-items-start d-flex">
             {props.products.map((product) => {

@@ -25,7 +25,10 @@ import SearchPage from './pages/Search';
 import Search from './pages/Search';
 import ShopsAdministration from './pages/ShopsAdministration';
 import ShopUpdateManager from './pages/ShopUpdateManager';
-import ShopSettings from './pages/ShopSettings';
+import ShopAdministration from './pages/ShopAdministration';
+import ShopSetting from './pages/ShopSetting';
+import ShopCreateProduct from './pages/ShopCreateProduct';
+import ShopManagment from './pages/ShopManagment';
 
 
 function App() {
@@ -54,9 +57,12 @@ function App() {
           <Route path='login' element={<Login/>}/>
           <Route path='my/:username' element={<MyAcc/>}/>
           <Route path='basket/:username' element={<Basket/>}/>
+          <Route path='shop_managment' element={<ShopManagment/>}/>
+          <Route path='shop_setting' element={<ShopSetting/>}/>
+          <Route path='shop_setting/:shopslug/create_product' element={<ShopCreateProduct/>}/>
           <Route path='shops_administration' element={<ShopsAdministration/>}/>
-          <Route path='shops_administration/create' element={<ShopSettings shopWillBeCreate={true}/>}/>
-          <Route path='shops_administration/:shopslug' element={<ShopSettings shopWillBeCreate={false}/>}/>
+          <Route path='shops_administration/create' element={<ShopAdministration shopWillBeCreate={true}/>}/>
+          <Route path='shops_administration/:shopslug' element={<ShopAdministration shopWillBeCreate={false}/>}/>
           <Route path='checkout/:username' element={<Checkout/>}/>   
           <Route path='success_checkout/:username' element={<SuccessCheckout/>}/>                 
         </Route>

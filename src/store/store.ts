@@ -10,6 +10,7 @@ import basketReducer from './reducers/baskets/BasketSlice'
 import pagePropertyReducer from './reducers/pageProperty/PagePropertySlice'
 import checkoutReducer from './reducers/checkout/CheckoutsSlice'
 import imageReducer from './reducers/other/ImageSlice'
+import shopDataReducer from './reducers/shop/ShopDataSlice'
 
 
 
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     ratingReducer,
     productsReducer,
     pagePropertyReducer,
-    imageReducer
+    imageReducer,
+    shopDataReducer
 })
 
 export const setupStore = () => {

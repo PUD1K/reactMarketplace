@@ -30,7 +30,13 @@ const ProductItem = (props: {product: IProduct}) => {
                     feedbackButtonVisible={false}
                 />
                 <p className='text-start fs-5' style={{marginBottom: 0}}>{props.product.name}</p>
-                <p className='text-start fs-5 text-secondary'>{props.product.shop.name}</p>
+                {
+                        props.product.shop
+                    ?
+                        <p className='text-start fs-5 text-secondary'>{props.product.shop.name}</p>
+                    : 
+                        <></>
+                }
                 <p className='text-start fs-5 fw-weight-bold'>{props.product.price} ₽</p>
             </div>
         </div>

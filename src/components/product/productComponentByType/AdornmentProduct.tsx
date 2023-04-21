@@ -5,7 +5,7 @@ import { localhost } from '../../../variables/server';
 import ColorSelector from '../ColorSelector';
 import SizeSelector from '../SizeSelector';
 
-const DishesProduct = () => {
+const AdornmentProduct = () => {
     const { product } = useAppSelector(state => state.productReducer)
     return (
         <div>
@@ -16,7 +16,7 @@ const DishesProduct = () => {
             <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Бренд: </strong>{product.manufacturer}</p>)}
             
             {(product.manufacturer && product.manufacturer !== '' &&
-            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Цвет: </strong>{product.color}</p>)}
+            <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Объем: </strong>{product.volume}</p>)}
             {(product.manufacturer && product.manufacturer !== '' &&
             <p className='fs-5' style={{margin:'0px', marginTop:'5px'}}><strong>Материал: </strong>{product.material}</p>)}
             {(product.manufacturer && product.manufacturer !== '' &&
@@ -31,4 +31,4 @@ const DishesProduct = () => {
     );
 };
 
-export default DishesProduct;
+export default AdornmentProduct;

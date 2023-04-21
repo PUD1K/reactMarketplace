@@ -13,7 +13,7 @@ const MyCheckoutComponent = () => {
 
     useEffect(() => {
         const getUserInfo = async () => {
-            const checkoutsInfoResponse = await axios.get(`${localhostCheckout}/${user.username}`)
+            const checkoutsInfoResponse = await axios.get(`${localhostCheckout}/by_slug/${user.username}`)
             dispatch(checkoutSlice.actions.setCheckouts(checkoutsInfoResponse.data));
         }
         getUserInfo();

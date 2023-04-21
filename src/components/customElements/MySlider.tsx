@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 const MySlider = (): JSX.Element =>
 <Carousel className='mt-4 mb-4' style={{
     display: 'block',
-    width: '1500px',
+    width: '1000px',
     height: '350px !important',
     margin: '0 auto'
 }}>

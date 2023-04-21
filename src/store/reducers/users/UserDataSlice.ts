@@ -14,6 +14,18 @@ const initialState: UserState = {
         address: '',
         createdAt: '',
         updatedAt: '',
+        shop: {
+            id: 0,
+            name: '',
+            slug: '',
+            description: '',
+            image: '',
+            createdAt: '',
+            updatedAt: '',
+            categories: [],
+            products: [],
+            users: []
+        },
         roles: [],
         basket: []
     },

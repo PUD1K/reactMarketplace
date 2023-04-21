@@ -17,7 +17,6 @@ const ShopsAdministration = () => {
     }, [])
 
     const navigateToCreateShop = () => {
-        console.log('asd')
         navigate(`/shops_administration/create`);
     }
 

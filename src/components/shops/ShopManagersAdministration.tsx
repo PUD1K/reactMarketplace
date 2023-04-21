@@ -7,10 +7,10 @@ import { localhostShop } from '../../variables/server';
 
 interface ShopManagersAdministrationProps{
     shop: IShop,
-    callbackSetState = () => void
+    callbackSetState: (addedUsers: string[]) => void
 }
 
-const ShopManagersAdministration = ({shop} : ShopManagersAdministrationProps) => {
+const ShopManagersAdministration = ({shop, callbackSetState} : ShopManagersAdministrationProps) => {
     const [username, setUsername] = useState('');
     const [checkedUsername, setCheckedUsername] = useState('')
     const [addedUsers, setAddedUsers] = useState<string []>([])
@@ -26,19 +26,17 @@ const ShopManagersAdministration = ({shop} : ShopManagersAdministrationProps) =>
         setSearchManagerResult(searchManagerResponseData)
         if(searchManagerResponseData){
             setCheckedUsername(username)
-            console.log(username)
         }
     }
 
     const addManager = () => {
         setAddedUsers([...addedUsers, checkedUsername])
+        callbackSetState([...addedUsers, checkedUsername]);
+
         setSearchManagerResult(null);
         setUsername('');
     }
 
-    const sendEvent = () => {
-
-    }
 
     useEffect(() => {
 
@@ -66,7 +64,7 @@ const ShopManagersAdministration = ({shop} : ShopManagersAdministrationProps) =>
                             <FontAwesomeIcon icon={faCheckCircle} style ={{color: 'green'}} /> 
                             Пользователь найден, вы можете добавить его в качестве менеджера
                         </p>
-                        <button className="btn btn-primary" onClick={() => addManager()}>Добавить менеджера</button>
+                        <button type="button" className="btn btn-primary" onClick={() => addManager()}>Добавить менеджера</button>
                     </div>
                 }
                 {!!addedUsers.length && 
@@ -83,7 +81,7 @@ const ShopManagersAdministration = ({shop} : ShopManagersAdministrationProps) =>
                     </div>
                 }
             </div>
-            <button className="btn btn-primary" onClick={() => searchManager()}>Поиск</button>
+            <button type="button" className="btn btn-primary" onClick={() => searchManager()}>Поиск</button>
         </div>
     );
 };

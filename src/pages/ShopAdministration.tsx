@@ -12,12 +12,14 @@ interface ShopUpdateProps{
     shopWillBeCreate: boolean;
 }
 
-const ShopSettings = ({ shopWillBeCreate }: ShopUpdateProps) => {
+const ShopAdministration = ({ shopWillBeCreate }: ShopUpdateProps) => {
     const [shop, setShop] = useState(Object || null);
     const [shopName, setShopName] = useState('')
-    const [shopDescription, setShopDescription] = useState('')
-    const [shopImageUrl, setShopImageUrl] = useState('')
-    const [shopBlobImage, setShopBlobImage] = useState<Blob | null>(null)
+    const [shopDescription, setShopDescription] = useState('');
+    const [shopImageUrl, setShopImageUrl] = useState('');
+    const [shopBlobImage, setShopBlobImage] = useState<Blob | null>(null);
+    const [addedUsers, setAddedUsers] = useState<string []>([]);
+
 
     const { shopslug } = useParams()
 
@@ -27,14 +29,19 @@ const ShopSettings = ({ shopWillBeCreate }: ShopUpdateProps) => {
         const to = `/shops_administration`;
         navigate(to);
       },[navigate])
-    
+
+    const handleCallback = (addUsers: string[]) => {
+        setAddedUsers(addUsers);
+    }
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
         const formData = new FormData();
+        formData.append("shopSlug", shop.slug);
         formData.append("name", shopName);
         formData.append("description", shopDescription);
+        formData.append("usernamesArr", JSON.stringify(addedUsers));
         if(shopBlobImage){
             formData.append("image", shopBlobImage);
         }
@@ -44,7 +51,6 @@ const ShopSettings = ({ shopWillBeCreate }: ShopUpdateProps) => {
                 "content-type": "multipart/form-data"
             }
         }
-
         const createShopResponse = shopWillBeCreate ? 
             await axios.post(`${localhostShop}`, formData, config)
         :   
@@ -101,6 +107,7 @@ const ShopSettings = ({ shopWillBeCreate }: ShopUpdateProps) => {
                     {(!shopWillBeCreate && 
                     (<div className='mt-3'>
                         <ShopManagersAdministration
+                        callbackSetState={handleCallback}
                         shop={shop}/>
                     </div>)
                      )}
@@ -114,4 +121,4 @@ const ShopSettings = ({ shopWillBeCreate }: ShopUpdateProps) => {
     );
 };
 
-export default ShopSettings;
+export default ShopAdministration;

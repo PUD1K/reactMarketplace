@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import { ISubcategory } from '../../models/SubcategryInterface';
 import SubCategoryItem from './SubCategoryItem';
 
-const CategoriesList = (props: {subCategories: ISubcategory[]}) => {
+const SubCategoriesList = (props: {subCategories: ISubcategory[]}) => {
     return (
         <div className="row align-items-start d-flex">
             {props.subCategories.map(subCategory => {
@@ -15,4 +15,4 @@ const CategoriesList = (props: {subCategories: ISubcategory[]}) => {
     );
 };
 
-export default CategoriesList;
+export default SubCategoriesList;
