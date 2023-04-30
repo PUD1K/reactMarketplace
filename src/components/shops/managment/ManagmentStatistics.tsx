@@ -46,14 +46,20 @@ const Chart = () => {
 
   return (
    <div>
-    <TotalSalesGraph
-    labelsProp={cellsPerCategoriesLabels}
-    dataProp={cellsPerCategoriesDatas}
-    />
-    <SalesPerMonthGraph
-    labelsProp={cellsPerMonthLabels}
-    dataProp={cellsPerMonthDatas}
-    />
+    <div>
+      <h3>Общее количество проданных товаров</h3>
+      <TotalSalesGraph
+      labelsProp={cellsPerCategoriesLabels}
+      dataProp={cellsPerCategoriesDatas}
+      />
+    </div>
+    <div className="mt-4">
+      <h3>График продаж</h3>
+      <SalesPerMonthGraph
+      labelsProp={cellsPerMonthLabels}
+      dataProp={cellsPerMonthDatas}
+      />
+    </div>
    </div>
   );
 };

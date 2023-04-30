@@ -33,7 +33,7 @@ const TotalSalesGraph = ({labelsProp, dataProp} : TotalSalesGraphProps) => {
       }
       
     return (
-        <div style={{ width: '500px', height: '500px' }}>
+        <div style={{ width: '600px', height: '600px' }}>
             <Doughnut
                 data={state}
         />

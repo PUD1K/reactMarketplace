@@ -18,8 +18,8 @@ const ButtonRemoveBasket = ({item, username} : BasketProps) => {
         const addToBasketBody = {
           username,
           article: item.product.article,
-          color: item.color.color,
-          size: item.Size.size
+          color: item.color?.color,
+          size: item.Size?.size
         }
     
         const response = await axios.post(`${localhostProduct}/remove_from_basket`, addToBasketBody);

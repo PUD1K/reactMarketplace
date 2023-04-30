@@ -19,8 +19,8 @@ const SelectCountBasket = ({item,username} : BasketProps) => {
           username,
           article: item.product.article,
           count: numCount,
-          color: item.color.color,
-          size: item.Size.size
+          color: item.color?.color,
+          size: item.Size?.size 
         }
     
         const response = await axios.post(`${localhostProduct}/set_count_basket_product`, addToBasketBody);

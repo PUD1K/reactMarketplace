@@ -1,22 +1,27 @@
 import React, { useEffect } from 'react';
 import MyCheckoutsList from '../../checkout/MyCheckoutsList';
-import { useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import ShopCheckoutsList from '../chekouts/ShopCheckoutsList';
+import { checkoutSlice } from '../../../store/reducers/checkout/CheckoutsSlice';
+import axios from 'axios';
+import { localhostCheckout } from '../../../variables/server';
 
 const ManagmentOrders = () => {
+    const { shop } = useAppSelector(state => state.shopDataReducer);
     const { checkouts } = useAppSelector(state => state.checkoutReducer);
+    const dispatch = useAppDispatch();
 
-    // useEffect(() => {
-    //     const getUserInfo = async () => {
-    //         const checkoutsInfoResponse = await axios.get(`${localhostCheckout}/${user.username}`)
-    //         dispatch(checkoutSlice.actions.setCheckouts(checkoutsInfoResponse.data));
-    //     }
-    //     getUserInfo();
-    //   }, [])
+    useEffect(() => {
+        const getUserInfo = async () => {
+            const checkoutsInfoResponse = await axios.get(`${localhostCheckout}/for_shop/${shop.slug}`)
+            dispatch(checkoutSlice.actions.setCheckouts(checkoutsInfoResponse.data));
+        }
+        getUserInfo();
+      }, [])
 
     return (
         <div>
-            <h1>ЗАКАЗЫ</h1>
-            <MyCheckoutsList
+            <ShopCheckoutsList
             checkouts={checkouts}
             />
         </div>

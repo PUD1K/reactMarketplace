@@ -9,7 +9,7 @@ import { shopDataSlice } from '../store/reducers/shop/ShopDataSlice';
 import SwitcherShopManagment from '../components/shops/SwitcherShopManagment';
 
 const ShopManagment = () => {
-    const [activeTab, setActiveTab] = useState('Категории');
+    const [activeTab, setActiveTab] = useState<string>('');
     const dispatch = useAppDispatch();
     const { shop } = useAppSelector(state => state.shopDataReducer);
 

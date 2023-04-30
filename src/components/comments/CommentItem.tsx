@@ -3,59 +3,18 @@ import { Form, Button, InputGroup, FormControl, ListGroup, Row, Col } from 'reac
 import { IComment } from "../../models/CommentInterface";
 import StarStatRating from './StarStatRating';
 import StarRating from './StartRating';
+import { parseDate } from '../../middleware/parseDate';
 
 interface commentProps{
     comment: IComment
 }
 
-interface ICalendar{
-    0: string,
-    1: string,
-    2: string,
-    3: string,
-    4: string,
-    5: string,
-    6: string,
-    7: string,
-    8: string,
-    9: string,
-    10: string,
-    11: string,
-}
-
 const CommentItem = ({comment} : commentProps) => {
     const [data, setData] = useState('')
 
-    const replaceData = (data: string) => {
-        const calendar: ICalendar = {
-            0: 'Января',
-            1: 'Февраля',
-            2: 'Марта',
-            3: 'Апреля',
-            4: 'Мая',
-            5: 'Июня',
-            6: 'Июля',
-            7: 'Августа',
-            8: 'Сентября',
-            9: 'Октября',
-            10: 'Ноября',
-            11: 'Декабря',
-        }
-
-        const year = data.substring(0,4);
-        const monthNum = data.substring(5,7);
-        let month = '';
-        if(monthNum[0] === '0')
-            month = calendar[monthNum[1] as unknown as keyof ICalendar];
-        else    
-            month = calendar[monthNum as unknown as keyof ICalendar];
-
-        const day = data.substring(8,10);
-        setData(`${day} ${month} ${year}`)
-    }
-
     useEffect(() => {
-        replaceData(comment.createdAt)
+        // replaceData(comment.createdAt)
+        setData(parseDate(comment.createdAt))
     }, [])
 
     return (

@@ -26,11 +26,13 @@ const CheckoutInfo = () => {
 
     const createCheckout = async () =>{
         const basketProductsId = basketProducts.map(basketProduct => basketProduct.id);
+        const firstShopSlug = basketProducts[0].product.shop.slug;
   
         const createCheckoutBody = {
           address: user.address,
           userId: user.id,
           username: user.username,
+          shopSlug: firstShopSlug,
           basketProductsId: basketProductsId
         }
         const createCheckouteResponse = await axios.post(`${localhostCheckout}`, createCheckoutBody);
