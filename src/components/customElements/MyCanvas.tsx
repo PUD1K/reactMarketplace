@@ -31,7 +31,7 @@ const MyCanvas = ({show}: CanvasInterface) => {
     return (
         <div className={classStyle} aria-hidden='true' tabIndex={-1} id="offcanvasWithBothOptions" data-bs-backdrop='true' aria-labelledby="offcanvasWithBothOptionsLabel"  aria-modal='true' role='dialog' style={{visibility: 'visible', width:'300px'}}>
             <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Категории</h5>
+                <h4 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Категории</h4>
                 <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Закрыть" onClick={() => setHideCanvas()}></button>
             </div>
             <div className="offcanvas-body">

@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
-import { IProduct } from '../../models/ProductInterface';
 import { useNavigate, useParams } from 'react-router-dom'
-import MyToast from '../customElements/MyToast';
-import { localhost, localhostProduct } from '../../variables/server';
 import axios from 'axios';
-import RatingInfo from '../comments/ScoreInfo';
+import RatingInfo from '../../comments/ScoreInfo';
+import { localhost } from '../../../variables/server';
+import { IProduct } from '../../../models/ProductInterface';
 
-const ProductItem = (props: {product: IProduct}) => {
+const ProductItemForSettings = (props: {product: IProduct}) => {
     const navigate = useNavigate()
     const username = JSON.parse((localStorage.getItem('userData') || '{}')).username;
 
@@ -47,5 +46,5 @@ const ProductItem = (props: {product: IProduct}) => {
     );
 };
 
-export default ProductItem;
+export default ProductItemForSettings;
 

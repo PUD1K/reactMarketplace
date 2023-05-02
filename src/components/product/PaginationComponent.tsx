@@ -10,7 +10,7 @@ interface PaginationProps{
 }
 
 const PaginationComponent = ({ currentPage, totalPages, currentUrl }: PaginationProps) => {
-    const [curPage, setCurPage] = useState(0)
+    const [curPage, setCurPage] = useState(0);
   
     const pageItems = [];
     const navigate = useNavigate();
@@ -32,6 +32,7 @@ const PaginationComponent = ({ currentPage, totalPages, currentUrl }: Pagination
     };
 
     useEffect(() => {
+      console.log(totalPages)
       setCurPage(currentPage)
     }, [currentPage])
 
@@ -50,21 +51,25 @@ const PaginationComponent = ({ currentPage, totalPages, currentUrl }: Pagination
     
   
     return (
-      <Pagination>
-        <Pagination.First 
-        onClick={() => onPageChange(1)} 
-        />
-        <Pagination.Prev
-          onClick={() => onPageChange(Math.max(1, curPage - 1))}
-        />
-        {pageItems}
-        <Pagination.Next
-          onClick={() => onPageChange(Math.min(totalPages, curPage + 1))}
-        />
-        <Pagination.Last 
-          onClick={() => onPageChange(totalPages)}
-         />
-      </Pagination>
+      <div>
+        { totalPages > 1 ? 
+          <Pagination >
+            <Pagination.First 
+            onClick={() => onPageChange(1)} 
+            />
+            <Pagination.Prev
+              onClick={() => onPageChange(Math.max(1, curPage - 1))}
+            />
+            {pageItems}
+            <Pagination.Next
+              onClick={() => onPageChange(Math.min(totalPages, curPage + 1))}
+            />
+            <Pagination.Last 
+              onClick={() => onPageChange(totalPages)}
+            />
+          </Pagination>
+          : <></>}
+        </div>
     );
   };
   

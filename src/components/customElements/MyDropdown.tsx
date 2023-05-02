@@ -1,21 +1,39 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ICategory } from '../../models/CategoryInterface';
 import {useLocation} from "react-router-dom";
 
 
 const MyDropdown = (props: {category: ICategory}) => {
     const [collapseShow, setCollapseShow] = useState(false);
-    const collapseStyle = `collapse${collapseShow? ' show' : ''}`
+    const [hover, setHover] = useState(false);
 
-    const location = useLocation();
+    const collapseStyle = `collapse${collapseShow? ' show' : ''}`
+    const pStyle = hover ? 'ms-4 mb-0' : 'ms-4 mb-0 text-secondary'
+
+    const navigate = useNavigate();
+
+    const navigateTo = (categorySlug: string, subcategorySlug: string) => {
+        navigate(`categories/${categorySlug}/${subcategorySlug}`)
+    }
+    
 
     return (
-        <div>
-            <p className='dropdown-toggle fw-light mb-0' data-bs-toggle="collapse" data-bs-target='#collapseExample' onClick={() => setCollapseShow(!collapseShow)}>{props.category.name}</p>
+        <div className='mb-3'>
+            <p className='dropdown-toggle fw-light mb-0 fs-5' data-bs-toggle="collapse" data-bs-target='#collapseExample' onClick={() => setCollapseShow(!collapseShow)}>{props.category.name}</p>
             <div className={collapseStyle} id='collapseExample'>
                 {props.category.subCategories.map(subcategory => {
-                    return <Link to={`categories/${props.category.slug}/${subcategory.slug}`} key={subcategory.name} className='ms-4 mb-0'>{subcategory.name}</Link>
+                    return (<div className='mt-2'>
+                                <p 
+                                className={pStyle}
+                                style={{cursor: "pointer"}}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
+                                onClick={() => navigateTo(props.category.slug, subcategory.slug)} 
+                                key={subcategory.name}>
+                                    {subcategory.name}
+                                </p>
+                            </div>)
                 })}
             </div>
         </div>

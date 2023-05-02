@@ -11,12 +11,12 @@ const CategoryItem = (props: {subCategory: ISubcategory}) => {
     },[props, navigate])
     
     return (
-        <div className="col-1 mb-5" style={{width: '350px'}}>
+        <div className="col-md-2 mb-5" style={{width: '350px'}}>
             <div onClick={navigateTo} style={{cursor: "pointer"}}>
                 <img 
                 src={`${localhost}/${props.subCategory.image}`} 
-                width='350px' 
-                height='350px' 
+                width='300px' 
+                height='300px' 
                 alt=''/>
                 <p className='text-start fs-5' style={{marginBottom: 0}}>{props.subCategory.name}</p>
             </div>

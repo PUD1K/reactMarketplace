@@ -24,7 +24,7 @@ const RatingInfo = ({totalRating, totalFeedbackCount, feedbackButtonVisible} : s
                 <StarStatRating
                 totalRating={Number(totalRating)}
                 />
-                <span className='ms-2'>Отзывов: {Number(totalFeedbackCount)}</span>
+                <span className='mt-1 ms-3 text-secondary' style={{margin:0, verticalAlign: 'sub', fontSize:'0.94rem', fontWeight: 400}}>{Number(totalFeedbackCount)}</span>
                 
                 {
                 feedbackButtonVisible ?

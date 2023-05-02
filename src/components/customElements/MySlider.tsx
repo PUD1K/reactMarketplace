@@ -1,16 +1,15 @@
 import Carousel from 'react-bootstrap/Carousel';
+import notebookImg from '../../static/mlXdqUmTryIZ.jpeg'
+import outfit from '../../static/1614723742_172-p-foni-dlya-odezhdi-215.jpg'
+import cosmetica from '../../static/8ddfc54557334e96a2eac37ab491e1c5.jpg'
+
 
 const MySlider = (): JSX.Element =>
-<Carousel className='mt-4 mb-4' style={{
-    display: 'block',
-    width: '1000px',
-    height: '350px !important',
-    margin: '0 auto'
-}}>
+<Carousel className='mt-4 mb-4'>
     <Carousel.Item>
     <img
         className="d-block w-100"
-        src="https://rozetked.me/images/uploads/mlXdqUmTryIZ.jpeg"
+        src={notebookImg}
         alt="First slide"
     />
     <Carousel.Caption>
@@ -21,7 +20,7 @@ const MySlider = (): JSX.Element =>
     <Carousel.Item>
     <img
         className="d-block w-100"
-        src="https://catherineasquithgallery.com/uploads/posts/2021-03/1614723742_172-p-foni-dlya-odezhdi-215.jpg"
+        src={outfit}
         alt="Second slide"
     />
 
@@ -33,7 +32,7 @@ const MySlider = (): JSX.Element =>
     <Carousel.Item>
     <img
         className="d-block w-100"
-        src="https://static.wixstatic.com/media/8ddfc54557334e96a2eac37ab491e1c5.jpg"
+        src={cosmetica}
         alt="Third slide"
     />
 

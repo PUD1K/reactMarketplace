@@ -9,8 +9,8 @@ const StarStatRating = (props: { totalRating: number}) => {
   return (
     <StarRatings
         rating={props.totalRating}
-        starDimension="20px"
-        starSpacing="5px"
+        starDimension="18px"
+        starSpacing="4px"
         starRatedColor="orange"
       />
   );

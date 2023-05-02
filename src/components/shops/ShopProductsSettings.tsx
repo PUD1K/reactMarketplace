@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks/redux';
-import ProductList from '../product/ProductList';
 import { useNavigate } from 'react-router';
+import ProductListForSettings from '../product/forSettings/ProductListForSettings';
 
 const ShopProductsSettings = () => {
     const { shop } = useAppSelector(state => state.shopDataReducer)
@@ -18,7 +18,7 @@ const ShopProductsSettings = () => {
                 shop.products.length 
                 ?
                     <div className='mt-3'>
-                        <ProductList
+                        <ProductListForSettings
                         products={shop.products}
                         />
                     </div>

@@ -20,7 +20,7 @@ const Comment = () => {
     }, [])
 
     return (
-        <div>
+        <div className='mt-2'>
             <Row>
                 <Col>
                     <h2>Отзыв о товаре {product.name}</h2>

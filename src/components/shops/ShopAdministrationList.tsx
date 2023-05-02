@@ -11,7 +11,7 @@ const ShopSettingList = ({shops}: ShopSettingProps) => {
         <div className="row align-items-start d-flex">
             {
                 shops.map(shop => {
-                    return <div className='col-md-2 mb-5'>
+                    return <div className='col-md-3 mb-5'>
                         <ShopAdministrationItem
                         shop={shop}/>
                     </div>

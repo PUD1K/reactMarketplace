@@ -29,7 +29,7 @@ const CommentItem = ({comment} : commentProps) => {
                         <StarStatRating
                         totalRating={Number(comment.score)}
                         />
-                        <span className='ms-3 text-secondary'>{data}</span>
+                        <span className='ms-3 text-secondary' style={{verticalAlign:'bottom'}}>{data}</span>
                     </Col>
                 </Row>
                 </Form.Group>

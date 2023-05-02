@@ -42,11 +42,13 @@ const MyNavbar = (): JSX.Element => {
     if(isLoggedIn)
       return (
         <>
-          <MyDropdown
-              email={email}
-              username={username}
-              roles={roles}/>
-          <Link className='ms-3 me-3 nav-link active active' to={navigateTo}>
+          <div className='me-4'>
+            <MyDropdown
+                email={email}
+                username={username}
+                roles={roles}/>
+          </div>
+          <Link className='ms-3 me-5 nav-link active active' to={navigateTo}>
               <img 
                 src={basketImg}
                 alt=''

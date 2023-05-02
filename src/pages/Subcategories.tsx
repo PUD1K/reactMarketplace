@@ -21,7 +21,7 @@ const Categories = () => {
     return (
         <div>
             <div className='mt-4'>
-                <h1>Категории</h1>
+                <h1>Подкатегории</h1>
                 {
                     subCategories.length
                     ?  
